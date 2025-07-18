@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureVault | Manager Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body { background: #f4f6f9; }
+        .dashboard-card {
+            border-left: 5px solid #0dcaf0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">🔐 SecureVault</a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2 class="text-info fw-bold mb-4">Manager Dashboard</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card dashboard-card p-3">
+                <h5><i class="bi bi-clipboard-data"></i> User Reports</h5>
+                <p>Analyze user activities, login time, and authentication modes.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card dashboard-card p-3">
+                <h5><i class="bi bi-ui-checks"></i> Task Review</h5>
+                <p>Manage pending approval tasks related to platform flow.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    &copy; 2025 SecureVault. All rights reserved.
+</footer>
+</body>
+</html>

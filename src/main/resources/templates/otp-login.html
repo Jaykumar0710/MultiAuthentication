@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureVault | Email OTP Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap + Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #0d6efd, #0dcaf0);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .otp-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">🔐 SecureVault</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/register}">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ✅ OTP FORM SECTION -->
+<div class="container d-flex align-items-center justify-content-center my-5">
+    <div class="col-md-6">
+        <div class="otp-container">
+            <h3 class="mb-4 text-center text-primary fw-bold">Email OTP Login</h3>
+
+            <!-- ✅ Error or Success Alert -->
+            <div th:if="${error}" class="alert alert-danger d-flex align-items-center">
+                <i class="bi bi-x-circle-fill me-2"></i>
+                <span th:text="${error}"></span>
+            </div>
+            <div th:if="${message}" class="alert alert-success d-flex align-items-center">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <span th:text="${message}"></span>
+            </div>
+
+            <!-- ✅ OTP Form -->
+            <form th:action="@{/send-otp}" method="post">
+                <div class="mb-3">
+                    <label class="form-label"><i class="bi bi-envelope-at-fill"></i> Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Enter your registered email" required autofocus />
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary fw-bold">Send OTP</button>
+                </div>
+            </form>
+
+            <!-- ✅ Extra Login Option -->
+            <div class="text-center mt-3">
+                <small>Already have a password? <a th:href="@{/login}">Login via password</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ FOOTER -->
+<footer class="bg-dark text-white text-center py-3">
+    &copy; 2025 SecureVault by Jaykumar. All rights reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureVault | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ✅ Bootstrap & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #0d6efd, #0dcaf0);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .login-container:hover {
+            transform: scale(1.01);
+        }
+
+        .form-icon {
+            font-size: 1.2rem;
+            color: #0d6efd;
+            margin-right: 6px;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+        }
+
+        .btn-dark:hover {
+            background-color: #1c1f23;
+        }
+
+        .alert {
+            border-radius: 10px;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">🔐 SecureVault</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ✅ LOGIN FORM SECTION -->
+<div class="container d-flex align-items-center justify-content-center my-5">
+    <div class="row w-100">
+        <!-- 🔵 Left side image -->
+        <div class="col-md-6 d-none d-md-block">
+            <img src="https://img.freepik.com/free-vector/sign-concept-illustration_114360-7965.jpg?w=740"
+                 class="img-fluid rounded shadow" alt="Login illustration">
+        </div>
+
+        <!-- 🔵 Right side login form -->
+        <div class="col-md-6">
+            <div class="login-container">
+                <h3 class="mb-4 text-center text-primary fw-bold">Login to SecureVault</h3>
+
+                <!-- 🔴 Login error alert -->
+                <div th:if="${param.error}" class="alert alert-danger text-center">
+                    <i class="bi bi-exclamation-circle-fill"></i> Invalid username or password.
+                </div>
+
+                <!-- ✅ Logout success alert -->
+                <div th:if="${param.logout}" class="alert alert-success text-center">
+                    <i class="bi bi-check-circle-fill"></i> You have been logged out successfully.
+                </div>
+
+                <!-- 🔐 Login form -->
+                <form th:action="@{/login}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-envelope form-icon"></i> Email
+                        </label>
+                        <input type="email" name="username" class="form-control" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-lock form-icon"></i> Password
+                        </label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary fw-semibold">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <p class="fw-bold mb-2">OR</p>
+                        <a href="/oauth2/authorization/github" class="btn btn-dark w-100">
+                            <i class="bi bi-github"></i> Login with GitHub
+                        </a>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <small>Don't have an account?
+                            <a th:href="@{/register}">Register here</a>
+                        </small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ FOOTER -->
+<footer class="bg-dark text-white text-center py-3">
+    &copy; 2025 SecureVault by Jaykumar. All rights reserved.
+</footer>
+
+<!-- ✅ Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
